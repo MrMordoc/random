@@ -21,13 +21,14 @@ def quicksort(myList, part, start, end):
     else:
         global totalComps
         totalComps += (end - start)
-        pivot = part(myList, start, end)
+        pivot = partition(myList, part, start, end)
         quicksort(myList, part, start, pivot - 1)
         quicksort(myList, part, pivot + 1, end)
 
-def partitionFirst(myList, start, end):
+def partition(myList, pivotF, start, end):
     """partition function which uses the first index in the array as the pivot value"""
     
+    pivotF(myList, start, end)
     pivot = myList[start]
     i = start + 1
     for j in range(start, end + 1):
@@ -37,49 +38,19 @@ def partitionFirst(myList, start, end):
     myList[start], myList[i-1] = myList[i-1], myList[start]
     return i - 1
 
-def partitionLast(myList, start, end):
-    """partition function which uses the last index in the array as the pivot value"""
-    
+def pivotFirst(myList, start, end):
+    pass
+
+def pivotLast(myList, start, end):
     myList[start], myList[end] = myList[end], myList[start]
-    pivot = myList[start]
-    i = start + 1
-    for j in range(start, end + 1):
-        if myList[j] < pivot:
-            myList[i], myList[j] = myList[j], myList[i]
-            i += 1
-    myList[start], myList[i-1] = myList[i-1], myList[start]
-    return i - 1
 
-def partitionMedian(myList, start, end):
-    """partition function which compares the first, last, and middle index in the
-    list and uses the median value as the pivot point"""
-    
+def pivotRand(myList, start, end):
+    idx = random.randint(start, end)
+    myList[start], myList[idx] = myList[idx], myList[start]
+
+def pivotMedian(myList, start, end):
     mid = ((start + end) / 2)
     values = [myList[start], myList[end], myList[mid]]
     median = sorted(values)[1]
     idx = myList.index(median)
     myList[start], myList[idx] = myList[idx], myList[start]
-    pivot = myList[start]
-    i = start + 1
-    for j in range(start, end + 1):
-        if myList[j] < pivot:
-            myList[i], myList[j] = myList[j], myList[i]
-            i += 1
-    myList[start], myList[i-1] = myList[i-1], myList[start]
-    return i - 1
-
-def partitionRandom(myList, start, end):
-    """partition function which choses a random value in the list to use
-    as the pivot"""
-
-    idx = random.randint(start, end)
-    myList[start], myList[idx] = myList[idx], myList[start]
-    pivot = myList[start]
-    i = start + 1
-    for j in range(start, end + 1):
-        if myList[j] < pivot:
-            myList[i], myList[j] = myList[j], myList[i]
-            i += 1
-    myList[start], myList[i-1] = myList[i-1], myList[start]
-    return i - 1
-
