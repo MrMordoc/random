@@ -37,4 +37,5 @@ def numQueens(numQueens):
 				boards.append(nextBoard)
 	return boards
 
-print len(numQueens(8))
+#print len(numQueens(0))
+print(numQueens(8))

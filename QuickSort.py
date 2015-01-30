@@ -1,6 +1,6 @@
-# This is a quicksort algorithm that uses different ways to chose it's pivot point
-# Total comps is the number of comparisons made during the sort, to compare the
-# efficiency of each pivot
+"""This is a quicksort algorithm that uses different ways to chose it's pivot point
+Total comps is the number of comparisons made during the sort, to compare the
+efficiency of each pivot."""
 
 import random
 
@@ -26,7 +26,8 @@ def quicksort(myList, part, start, end):
         quicksort(myList, part, pivot + 1, end)
 
 def partition(myList, pivotF, start, end):
-    """partition function which uses the first index in the array as the pivot value"""
+    """list, function, int int -> int
+    partition function which uses the first index in the array as the pivot value to sort the list"""
     
     pivotF(myList, start, end)
     pivot = myList[start]
